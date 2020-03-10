@@ -1,0 +1,136 @@
+logged out
+	ability to see listings
+		have to log in to apply
+	ability to click photos and go through rooms in listings
+		whatever pictures landlord is able to put up with it
+
+model after other websites?
+	don't want it look like rent college pads
+		hates that green
+		hates automatic split screen map
+		likes related listings
+			other 4 bedrooms, same vicinity
+			
+	cozy.co
+		/for-renters
+		likes teh way that the website is explained to students
+		
+
+both sides
+	listing of properties
+
+landlord side
+	post properties
+	
+	ability to send alerts to tenants
+	alert that they haven't paid rent etc
+		hit email used to log in
+		text reminder?
+		
+	maintenance tab
+		landlord gets email/text
+	
+	ability to make postings
+		add pictures of apartments
+	
+student/tenant side
+	view properties
+			
+	Ability to see number of views that a property has had
+		nice to have
+		
+	one application per person
+		ability to fill out a form on the website for application
+	
+	maintenace tab
+		communicate whats going wrong
+			who its coming from
+			address
+				landlord gets email/text
+			
+	landlord ability to upload documents
+			
+	start of slides
+		once you've already started leasing
+		basic information about yourself and the property you're staying in
+		
+	Profile
+		When first come on website, make profile
+			ability to know if someone is a junior, renting for 2 more years
+				gives ability for landlord to forecast when they'll have to market
+					if everyone is senior, will have to increase marketing
+			looking for 4 roomates, optimize apartments with 4 bedrooms
+			5 minute walk
+			(pick parameters for search)
+			
+			distance to downtown
+			number of rental properties surrounding
+				is this residential area?
+			
+	payments
+		payments made
+		payments due
+		landlord ability to apply a late fee
+		
+	Listings
+		input number of roomates, house or apartment, price, walk to campus
+			ability to add parameters if we think of anything
+			
+	Reviews
+		probably not
+		
+	Documents
+		pull up lease and such
+		
+	
+All encompassing platform
+	lease signing
+	pay deposit
+	monthly/semester rent
+	
+	
+Financial page
+	all financials for tax purposes
+	
+	ability to see each house
+	each resident?
+	
+	all properties as a whole
+		jacob will get more information on what financials have to go into that page
+		
+		
+Different from rentcollegepads?
+
+	no college renting site which is full encompassing
+	price of posting $175 per semester
+		cheaper on this platform - $50?
+			raise volume
+			lower price
+			
+	payment side
+		every time you pay rent
+			service charge on third party
+				2% - third party payment processing
+				collegerentalpro takes 1% - $3 payment fee per semester
+				free to landlords
+	
+Frontend - colors
+	blue & green from slides
+	
+ability to add subleasing functionality
+	another tab
+		lower on the priority
+		
+front page
+	managers & landlords
+		show us the functionality of the website
+			what you use the site for
+			advantages
+	students
+		same story
+		
+payment note
+	go to pay
+	landlord only takes check
+		inform tenant
+		
