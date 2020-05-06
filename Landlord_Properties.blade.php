@@ -96,17 +96,100 @@
             </div>
         </div>
 
+        <div class="modal" id="add-property-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Property</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="address">Address</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Address">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="city">City</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="City">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="state">State</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="State">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="zip">Zip</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Zip">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="beds">Bedrooms</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Bedrooms">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="baths">Bathrooms</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Bathrooms">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="rent">Rent</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Rent">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="save-property">Add Property</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </body>
 
     <script>
 
         $(document).ready(function(){
 
-            $('#add-property').click(function(){
-                $.post("add-property", { address: "", city: "", state: "", zip: "", bedrooms: "", bathrooms: "", rent: "" });
-                $.done(function(){
 
-                });
+
+            $("#add-property").click(function(){
+
+                $("#add-property-modal").modal("show");
+                
+                let data = {
+                    address: $("#address").val(),
+                    city: $("#city").val(),
+                    state: $("#state").val(),
+                    zip: $("#zip").val(),
+                    bedrooms: $("#beds").val(),
+                    bathrooms: $("#baths").val(),
+                    rent: $("#rent")
+                };
+
+                $.post("save-property", data);
+                    $.done(function(){
+                    });
             });
 
         });
