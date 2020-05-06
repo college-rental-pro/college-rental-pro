@@ -28,15 +28,6 @@
     </head>
     <body>
 
-        @if(Session:has('message'))
-            <div class="alert alert-success alert-dismissible show" role="alert">
-                {{Session::get('message')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>   
-            </div>
-        @endif
-
         <header>
             <nav class="navbar navbar-expand-lg container-fluid navbar-light bg-white">
                 <ul class="navbar-nav mr-auto">
@@ -81,6 +72,15 @@
 
         
         <div class="container-fluid" id="properties-container">
+            @if(Session::has('message'))
+                <div class="alert alert-success alert-dismissible show" role="alert">
+                    {{Session::get('message')}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>   
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-sm-6"> 
                     <div class="card">
@@ -163,9 +163,9 @@
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="rent-type">Rent Type</span>
+                                    <span class="input-group-text">Rent Type</span>
                                 </div>
-                                <input type="text" class="form-control" aria-label="Rent Type" name="rent-type">
+                                <select name="rent-type" id="rent-type" class="form-control"></select>
                             </div>
                         </div>
 
@@ -183,35 +183,32 @@
     <script>
         $(document).ready(function(){
             $.ajaxSetup({ headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") } });
-            let url = "{{URL::to('landlord/add-property')}}";
-            console.log(url);
 
-            $.get("price-types")
-                .done(function(data){
-                    console.log(data);
-                });
+            function getPriceTypes(){
+                let url = "{{URL::to('landlord/price-types')}}";
+                
+                $.get(url)
+                    .done(function(response){
+                        console.log(response);
+
+                        for(let i=0; i<response.length; i++){
+                            $("#rent-type").append("<option value="+response[i].id+">"+response[i].name+"</option>");
+                        }
+                    })
+                    .fail(function(error){
+                        console.log(error);
+                    });
+
+            }
+
+            getPriceTypes();
+
+            function getProperties(){
+                // this function should get the properties and show them
+            }
 
             $("#add-property").click(function(){
                 $("#add-property-modal").modal("show");
-                
-                let data = {
-                    address: $("#address").val(),
-                    city: $("#city").val(),
-                    state: $("#state").val(),
-                    zip: $("#zip").val(),
-                    bedrooms: $("#beds").val(),
-                    bathrooms: $("#baths").val(),
-                    rent: $("#rent").val(),
-                    rent_type: $("rent-type").val()
-                };
-
-                // $("#save-property").click(function(){
-                //     console.log("sending:", data);
-                //     $.post("add-property", data)
-                //         .done(function(){
-                //             console.log(data);
-                //         });
-                // });   
             });
         });
     </script>
