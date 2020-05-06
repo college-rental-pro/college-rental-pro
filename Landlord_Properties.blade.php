@@ -105,62 +105,71 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <form action="{{URL::to('add-property')}}">
 
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="address">Address</span>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="address">Address</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Address" name="address">
                             </div>
-                            <input type="text" class="form-control" aria-label="Address">
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="city">City</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="City" name="city">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="state">State</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="State" name="state">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="zip">Zip</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Zip" name="zip">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="beds">Bedrooms</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Bedrooms" name="beds">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="baths">Bathrooms</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Bathrooms" name="baths">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="rent">Rent</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Rent" name="rent">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="rent-type">Rent Type</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Rent Type" name="rent-type">
+                            </div>
                         </div>
 
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="city">City</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="City">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="save-property">Add Property</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="state">State</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="State">
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="zip">Zip</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Zip">
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="beds">Bedrooms</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Bedrooms">
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="baths">Bathrooms</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Bathrooms">
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="rent">Rent</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Rent">
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="save-property">Add Property</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -171,7 +180,8 @@
 
         $(document).ready(function(){
 
-
+            let url = "{{URL::to()}}";
+            console.log(url);
 
             $("#add-property").click(function(){
 
@@ -184,12 +194,16 @@
                     zip: $("#zip").val(),
                     bedrooms: $("#beds").val(),
                     bathrooms: $("#baths").val(),
-                    rent: $("#rent")
+                    rent: $("#rent").val(),
+                    rent_type: $("rent-type").val()
                 };
 
-                $.post("save-property", data);
-                    $.done(function(){
-                    });
+                $("#save-property").click(function(){
+                    $.post("add-property", data);
+                        $.done(function(){
+                            console.log(data);
+                        });
+                });   
             });
 
         });
