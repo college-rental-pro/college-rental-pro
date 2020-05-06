@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <meta name="csrf-token" content="{{csrf_token()}}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
         <style>
-
             .nav-item {
                 font-size: large;
             }
-
             #side-nav {
                 height: 100vh;
                 width: 10%;
                 position: fixed;
                 left: 0;
             }
-
             #properties-container {
                 margin-top: 2%;
                 width: 70%;
                 margin-left: 15%;
                 margin-right: 5%;
             }
-
-
         </style>
         
     </head>
     <body>
+
+        @if(Session:has('message'))
+            <div class="alert alert-success alert-dismissible show" role="alert">
+                {{Session::get('message')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>   
+            </div>
+        @endif
 
         <header>
             <nav class="navbar navbar-expand-lg container-fluid navbar-light bg-white">
@@ -105,8 +109,8 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{URL::to('add-property')}}">
-
+                    <form action="{{URL::to('landlord/add-property')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="modal-body">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -166,7 +170,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="save-property">Add Property</button>
+                            <button type="submit" class="btn btn-primary" id="save-property">Add Property</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
@@ -177,14 +181,11 @@
     </body>
 
     <script>
-
         $(document).ready(function(){
-
-            let url = "{{URL::to()}}";
+            $.ajaxSetup({ headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") } });
+            let url = "{{URL::to('landlord/add-property')}}";
             console.log(url);
-
             $("#add-property").click(function(){
-
                 $("#add-property-modal").modal("show");
                 
                 let data = {
@@ -198,14 +199,14 @@
                     rent_type: $("rent-type").val()
                 };
 
-                $("#save-property").click(function(){
-                    $.post("add-property", data);
-                        $.done(function(){
-                            console.log(data);
-                        });
-                });   
+                // $("#save-property").click(function(){
+                //     console.log("sending:", data);
+                //     $.post("add-property", data)
+                //         .done(function(){
+                //             console.log(data);
+                //         });
+                // });   
             });
-
         });
     </script>
 
