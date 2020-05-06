@@ -199,6 +199,11 @@
                     rent_type: $("rent-type").val()
                 };
 
+                $.get("price-types")
+                    .done(function(){
+                        console.log(data);
+                    });
+
                 // $("#save-property").click(function(){
                 //     console.log("sending:", data);
                 //     $.post("add-property", data)
