@@ -185,6 +185,12 @@
             $.ajaxSetup({ headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") } });
             let url = "{{URL::to('landlord/add-property')}}";
             console.log(url);
+
+            $.get("price-types")
+                .done(function(data){
+                    console.log(data);
+                });
+
             $("#add-property").click(function(){
                 $("#add-property-modal").modal("show");
                 
@@ -198,11 +204,6 @@
                     rent: $("#rent").val(),
                     rent_type: $("rent-type").val()
                 };
-
-                $.get("price-types")
-                    .done(function(){
-                        console.log(data);
-                    });
 
                 // $("#save-property").click(function(){
                 //     console.log("sending:", data);
